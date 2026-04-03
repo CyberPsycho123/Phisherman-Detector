@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap');
+
+:root {
+  --bg:      #0a0a0a;
+  --border:  #1f1f1f;
+  --acid:    #c6ff00;
+  --red:     #ff3b3b;
+  --cream:   #f0ead8;
+  --muted:   #3a3a3a;
+  --text:    #888880;
+  --display: 'Bebas Neue', cursive;
+  --mono:    'DM Mono', monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--mono);
+}
+
+/* ── Layout ──────────────────────────────────────── */
+.page-404 {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* static radial glow — no animation */
+.page-404::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 65% 55% at 50% 48%,
+    rgba(198,255,0,0.045) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* ── Top-left badge ──────────────────────────────── */
+.badge {
+  position: absolute;
+  top: 2rem;
+  left: 2.2rem;
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.badge::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--red);
+  flex-shrink: 0;
+}
+
+/* ── Top-right code ──────────────────────────────── */
+.err-code {
+  position: absolute;
+  top: 2rem;
+  right: 2.2rem;
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+/* ── Center content ──────────────────────────────── */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Giant number ────────────────────────────────── */
+.num-404 {
+  font-family: var(--display);
+  font-size: clamp(150px, 24vw, 320px);
+  color: var(--cream);
+  letter-spacing: -0.01em;
+  line-height: 0.88;
+  /* static chromatic offset — no keyframes */
+  text-shadow:
+    -3px 0 0 rgba(255, 59, 59, 0.30),
+     3px 0 0 rgba(198,255,  0, 0.22);
+  user-select: none;
+}
+
+/* ── Thin rule ───────────────────────────────────── */
+.rule {
+  width: 300px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 1.8rem 0;
+}
+
+/* ── Heading ─────────────────────────────────────── */
+.heading {
+  font-family: var(--display);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--cream);
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+}
+
+/* ── Body text ───────────────────────────────────── */
+.body-text {
+  font-size: 0.7rem;
+  color: var(--text);
+  letter-spacing: 0.05em;
+  line-height: 1.9;
+  max-width: 330px;
+  font-style: italic;
+}
+
+/* ── Actions ─────────────────────────────────────── */
+.actions {
+  display: flex;
+  gap: 0.85rem;
+  margin-top: 2rem;
+}
+
+.btn {
+  font-family: var(--mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.72rem 1.7rem;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  background: none;
+  transition: opacity 0.15s, box-shadow 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.btn-primary {
+  background: var(--acid);
+  color: #0a0a0a;
+  border-color: var(--acid);
+  font-weight: 500;
+}
+
+.btn-primary:hover {
+  opacity: 0.88;
+  box-shadow: 0 0 16px rgba(198,255,0,0.28);
+}
+
+.btn-ghost {
+  color: var(--muted);
+  border-color: var(--border);
+}
+
+.btn-ghost:hover {
+  color: var(--cream);
+  border-color: var(--muted);
+}
+
+/* ── Bottom status bar ───────────────────────────── */
+.status-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 2.2rem;
+  border-top: 1px solid var(--border);
+}
+
+.status-bar span {
+  font-size: 0.57rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.dot-red { color: var(--red); }
+
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 500px) {
+  .actions { flex-direction: column; align-items: center; }
+  .btn { width: 180px; text-align: center; }
+  .badge, .err-code, .status-bar { display: none; }
+}
